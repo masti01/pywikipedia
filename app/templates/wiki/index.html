@@ -1,0 +1,26 @@
+{% extends 'public/templates/public_template.html' %}
+
+{% block title %}Page: {{ page }}{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Statystyki działań redaktorów</h5>
+                <p class="card-text">Statystyki dotyczące działań redaktorów. Podsumowanie jest generowane na podstawie danych z ostatnich 24h i 7 dni (168h).</p>
+                <a href="/wiki/redaktorzy" class="btn btn-primary">Przejdź</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Blokady</h5>
+              <p class="card-text">Statystyki blokad. Podsumowanie jest generowane na podstawie danych z ostatnich 30 dni.</p>
+              <a href="/wiki/blokady" class="btn btn-primary">Przejdź</a>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

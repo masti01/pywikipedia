@@ -1,0 +1,74 @@
+{% extends 'public/templates/public_template.html' %}
+
+{% block title %}Page: {{ page }}{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h1>{{ title }}</h1>
+                <hr>
+                <p>Strona przedstawia statystyki dotyczące działań redaktorów. Podsumowanie jest generowane na podstawie danych z ostatnich 24h i 7 dni (168h).</p>
+                <a name="24h"></a>
+                
+                <h3>Najaktywniejsi redaktorzy w ostatnich 24h  <a href="#168h" class="btn btn-primary">168h  <i class="bi bi-arrow-down-square-fill"></i></a></h3>
+
+                <table id="table24" 
+                    data-toggle="table" 
+                    data-pagination="true"
+                    class="table table-sm table-bordered table-striped table-hover text-center col-auto text-small">
+                    <thead>
+                        <tr>
+                            <th>Redaktor</th>
+                            <th data-sortable="true" data-field="f1">Oznaczeń</th>
+                            <th data-field="f2">Pierwsze</th>
+                            <th data-field="f3">Ponowne</th>
+                            <th data-field="f4">Wycofanie</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for nick in sort["24"]  %}
+                        <tr>
+                            <td><a href="//pl.wikipedia.org/wiki/Wikipedysta:{{ nick }}">{{ nick }}</a></td>
+                            <td>{{ res24[nick][0]}}</td>
+                            <td>{{ res24[nick][1]}}</td>
+                            <td>{{ res24[nick][2]}}</td>
+                            <td>{{ res24[nick][3]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a name="168h"></a>
+                <h3>Najaktywniejsi redaktorzy w ostatnich 168h (7dni)  <a href="#24h" class="btn btn-primary">24h  <i class="bi bi-arrow-up-square-fill"></i></a></h3>
+
+                <table id="table168" class="table table-sm table-bordered table-striped table-hover text-center col-auto text-small">
+                    <thead>
+                        <tr>
+                            <th>Redaktor</th>
+                            <th>Oznaczeń</th>
+                            <th>Pierwsze</th>
+                            <th>Ponowne</th>
+                            <th>Wycofanie</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for nick in sort["168"]  %}
+                        <tr>
+                            <td><a href="//pl.wikipedia.org/wiki/Wikipedysta:{{ nick }}">{{ nick }}</a></td>
+                            <td>{{ res168[nick][0]}}</td>
+                            <td>{{ res168[nick][1]}}</td>
+                            <td>{{ res168[nick][2]}}</td>
+                            <td>{{ res168[nick][3]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

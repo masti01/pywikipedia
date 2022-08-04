@@ -1,0 +1,67 @@
+{% extends 'public/templates/public_template.html' %}
+
+{% block title %}Page: {{ page }}{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h1>{{ Usunięcia }}</h1>
+                <hr>
+                <p>Strona przedstawia statystykiusunięć stron. Podsumowanie jest generowane na podstawie danych z ostatnich 30 dni</p>
+                <a name="uzasadnienia"></a>
+                <h3>Usunięcia - uzasadnienia - ostatnie 30 dni  <a href="#administratorzy" class="btn btn-primary">administratorzy  <i class="bi bi-arrow-down-square-fill"></i></a></h3>
+
+                <table class="table table-sm table-bordered table-striped table-hover text-center col-auto text-small">
+                    <caption><small>Jednorazowe uzasadnienia nie zostały pokazane.</small></caption>
+                    <thead>
+                        <tr>
+                            <th>Liczba</th>
+                            <th>uzasadnienie</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for count, reason in blocks["reasons"]  %}
+                        <tr>
+                            <td>{{ count }}</td>
+                            <td style="text-align: left">{{ reason }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a name="administratorzy"></a>
+                <h3>Usunięcia - administratorzy - ostatnie 30 dni  <a href="#" class="btn btn-primary">uzasadnienia  <i class="bi bi-arrow-up-square-fill"></i></a></h3>
+
+                <table class="table table-sm table-bordered table-striped table-hover text-center col-auto text-small">
+                    <caption><small>Jednorazowe blokady nie zostały pokazane.</small></caption>
+                    <thead>
+                        <tr>
+                            <th style="width:40%">Administrator</th>
+                            <th style="width:10%">Liczba</th>
+                            <th style="width:10%">Udział %</th>
+                            <th style="width:40%">%</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for (nick, n, percent, fs) in blocks["admins"]  %}
+                        <tr>
+                            <td><a href="//pl.wikipedia.org/wiki/Wikipedysta:{{ nick }}">{{ nick }}</a></td>
+                            <td>{{ n }}</td>
+                            <td>{{ fs }}</td>
+                            <td>
+                                <div class="progress" style="height: 1.5em">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ percent*100 }}%; color: #000000" aria-valuenow="{{ percent*100 }}" aria-valuemin="0" aria-valuemax="100">{{ fs }}</div>
+                                  </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
