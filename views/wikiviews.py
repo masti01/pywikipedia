@@ -1,4 +1,3 @@
-from multiprocessing.sharedctypes import RawValue
 from flask import render_template
 from app import app
 import pywikibot
