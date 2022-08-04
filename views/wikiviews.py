@@ -6,7 +6,7 @@ from app.review import Review
 from app.blocks import Blocks
 from app.deletes import Deletes
 
-@app.route("/wiki")
+@app.route("/")
 def wiki_page():
     site = pywikibot.Site('pl', 'wikipedia')  # The site we want to run our bot on
     page = pywikibot.Page(site, 'Kantar Media Intelligence')
@@ -14,8 +14,8 @@ def wiki_page():
     print(page.text)
     return render_template("wiki/index.html", title=page.title(), text=page.text)
 
-@app.route("/wiki/review")
-@app.route("/wiki/redaktorzy")
+@app.route("/review")
+@app.route("/redaktorzy")
 def wiki_review():
     
     rv = Review('pl')
@@ -23,8 +23,8 @@ def wiki_review():
     # print(rv.res)
     return render_template("wiki/review.html", title='Statystyki redaktorów', sort=rv.res, res24=rv.res24, res168=rv.res168)
 
-@app.route("/wiki/blocks")
-@app.route("/wiki/blokady")
+@app.route("/blocks")
+@app.route("/blokady")
 def wiki_blocks():
     
     bl = Blocks('pl')
@@ -32,8 +32,8 @@ def wiki_blocks():
     #print(bl.blocks)
     return render_template("wiki/blocks.html", title='Statystyki blokad', blocks=bl.blocks)
     
-@app.route("/wiki/deletes")
-@app.route("/wiki/usuwanie")
+@app.route("/deletes")
+@app.route("/usuwanie")
 def wiki_deletes():
     
     bl = Deletes('pl')
