@@ -2,7 +2,7 @@ version: '3.8'
 services:
 
   pywiki:
-    build: .
+    build: . 
     container_name: pywiki
     restart: always
     environment:
