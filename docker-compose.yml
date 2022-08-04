@@ -6,6 +6,6 @@ services:
     container_name: pywiki
     restart: always
     environment:
-      - APP_NAME=MyPywikiApp
+      - APP_NAME=pywikiApp
     expose:
-      - 8080
+      - 80
